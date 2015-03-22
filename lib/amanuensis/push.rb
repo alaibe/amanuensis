@@ -1,5 +1,5 @@
 module Amanuensis
   class Push
-    extend Interchange.new
+    extend Interchange.new(:run)
   end
 end

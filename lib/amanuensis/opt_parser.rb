@@ -29,8 +29,8 @@ module Amanuensis
           options.code_manager = code_manager
         end
 
-        opts.on("-o", "--oauth-token, [STRING]", String, "Oauth token of your code manger") do |code_manager|
-          options.code_manager = code_manager
+        opts.on("-o", "--oauth-token, [STRING]", String, "Oauth token of your code manger") do |oauth_token|
+          options.oauth_token = oauth_token
         end
 
         opts.on("-r", "--release default: false, [Boolean]", "Create a release at the end", "true or false") do |release|

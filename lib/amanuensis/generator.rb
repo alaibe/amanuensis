@@ -5,26 +5,25 @@ module Amanuensis
       check_required_configuration!
 
       CodeManager.use configuration.code_manager
-      success = push build
 
-      create_release if success.all?
+      create_release if push_changelog.all?
     end
 
     private
 
-    def build
-      Builder.new(name, from, configuration).build
+    def changelog
+      @changelog ||= Builder.new(name, from, configuration).build
     end
 
-    def push(changelog)
-      push.map do |type|
+    def push_changelog
+      configuration.push.map do |type|
         Push.use type
-        Push.run
+        Push.run(changelog)
       end
     end
 
     def from
-      latest_release.try(:created_at)
+      latest_release.created_at rescue Date.new(1900)
     end
 
     def latest_release
