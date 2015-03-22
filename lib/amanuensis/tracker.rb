@@ -1,5 +1,5 @@
 module Amanuensis
-  class BuilderService
+  class Tracker
     include Interchange.new
   end
 end

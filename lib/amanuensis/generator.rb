@@ -12,7 +12,6 @@ module Amanuensis
     private
 
     def build
-      builder_class.new(configuration).build
     end
 
     def push(changelog)

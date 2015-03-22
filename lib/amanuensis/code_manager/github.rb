@@ -1,5 +1,5 @@
 module Amanuensis
-  class StorageService
+  class CodeManager
     class Github
 
       def latest_release(name, oauth_token)

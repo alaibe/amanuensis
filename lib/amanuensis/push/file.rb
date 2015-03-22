@@ -1,5 +1,5 @@
 module Amanuensis
-  class PushService
+  class Push
     class File
 
     end

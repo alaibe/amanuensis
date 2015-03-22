@@ -1,5 +1,5 @@
 module Amanuensis
-  class PushService
+  class Push
     include Interchange.new
   end
 end

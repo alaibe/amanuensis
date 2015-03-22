@@ -1,5 +1,5 @@
 module Amanuensis
-  class BuilderService
+  class Tracker
     class Github
 
       def build(name, release, configuration)
