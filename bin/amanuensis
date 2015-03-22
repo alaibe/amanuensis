@@ -7,9 +7,11 @@ name    = ARGV[0]
 options = Amanuensis::OptParser.parse(ARGV)
 
 Amanuensis.configure do |config|
-  config.outputs = options.outputs
-  config.tracker = options.tracker
+  config.push           = options.push
+  config.tracker        = options.tracker
+  config.code_manager   = options.code_manager
+  config.oauth_token    = options.oauth_token
+  config.create_release = options.create_release
 end
-
 
 Amanuensis.generate name
