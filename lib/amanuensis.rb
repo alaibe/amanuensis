@@ -1,10 +1,11 @@
 require 'active_support/inflections'
 
+require_relative "amanuensis/storage_service/github"
+
 require_relative "amanuensis/version"
 require_relative "amanuensis/configuration"
 require_relative "amanuensis/opt_parser"
 require_relative "amanuensis/generator"
-require_relative "amanuensis/release"
 
 module Amanuensis
   class << self
