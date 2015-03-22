@@ -1,6 +1,6 @@
-require "amanuensis/version"
-require "amanuensis/configuration"
-require "amanuensis/opt_parser"
+require_relative "amanuensis/version"
+require_relative "amanuensis/configuration"
+require_relative "amanuensis/opt_parser"
 
 module Amanuensis
   class << self
