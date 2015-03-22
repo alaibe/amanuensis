@@ -13,7 +13,7 @@ module Amanuensis
       private
 
       def filter(list, from)
-        list.select { |object| object.closed_at >= from }
+        list.select { |object| object.closed_at > from }
       end
 
       def client(oauth_token)
