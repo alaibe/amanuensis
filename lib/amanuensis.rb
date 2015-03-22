@@ -1,5 +1,5 @@
 require 'interchange'
-#require 'active_support/inflections'
+require 'octokit'
 
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"

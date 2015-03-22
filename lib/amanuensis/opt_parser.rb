@@ -6,6 +6,10 @@ module Amanuensis
 
     def self.parse(args)
       options = OpenStruct.new
+      options.push           = [:file]
+      options.code_manager   = :github
+      options.tracker        = :github
+      options.create_release = false
 
       opt_parser = OptionParser.new do |opts|
         opts.banner = "Usage: amanuensis name [options]"
