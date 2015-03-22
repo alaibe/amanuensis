@@ -4,16 +4,18 @@ module Amanuensis
     def build
       Tracker.use configuration.tracker
 
-      changelog = "## #{version}-#{Time.now.strftime('%Y%m%d%H%M%S')}\n"
-      changelog << "**Issues closed:**\n"
+      changelog = "## #{version}-#{Time.now.strftime('%d/%m/%Y %H:%M:%S')}\n"
+      changelog << "\n"
 
-      changelog << "**Pull requests closed:**\n"
+      changelog << "**Issues closed:**\n"
       issues.each do |issue|
-        changelog << "- [##{issue.number}](#{issue.html_url}) #{issue.title}\n"
+        changelog << "* [##{issue.number}](#{issue.html_url}) #{issue.title}\n"
       end
 
+      changelog << "\n"
+      changelog << "**Pull requests closed:**\n"
       pulls.each do |pull|
-        changelog << "- [##{pull.number}](#{pull.html_url}) #{pull.title}\n"
+        changelog << "* [##{pull.number}](#{pull.html_url}) #{pull.title}\n"
       end
 
       changelog
