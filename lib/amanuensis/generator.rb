@@ -5,9 +5,9 @@ module Amanuensis
       check_required_configuration!
 
       CodeManager.use configuration.code_manager
-      push build
+      success = push build
 
-      create_release
+      create_release if success.all?
     end
 
     private
@@ -17,7 +17,7 @@ module Amanuensis
     end
 
     def push(changelog)
-      push.each do |type|
+      push.map do |type|
         Push.use type
         Push.run
       end
