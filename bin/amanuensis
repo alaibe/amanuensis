@@ -3,6 +3,7 @@
 require_relative '../lib/amanuensis'
 require 'pry'
 
+name    = ARGV[0]
 options = Amanuensis::OptParser.parse(ARGV)
 
 Amanuensis.configure do |config|
@@ -10,4 +11,5 @@ Amanuensis.configure do |config|
   config.tracker = options.tracker
 end
 
-Amanuensis.generate
+
+Amanuensis.generate name

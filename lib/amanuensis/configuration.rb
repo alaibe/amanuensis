@@ -1,15 +1,9 @@
 module Amanuensis
   class Configuration
-    attr_accessor :outputs, :tracker
+    attr_accessor :outputs, :tracker, :github_oauth_token
 
     def initialize
       @outputs = []
-    end
-
-    def tracker_options
-    end
-
-    def push_options
     end
 
   end

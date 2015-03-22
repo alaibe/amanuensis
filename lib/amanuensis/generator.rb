@@ -4,24 +4,29 @@ module Amanuensis
     def run!
       check_required_configuration!
 
-      release   = create_release
-      changelog = build_changelog release, configuration.tracker_options
+      push build
 
-      push changelog, configuration.push_options
+      create_release
     end
 
     private
 
-    def build_changelog(release, options = {})
+    def build
+      builder_class.new(configuration).build
     end
 
-    def push(changelog, options = {})
+    def push(changelog)
     end
 
     def create_release
+      #Release.new(:github_oauth_token).create
     end
 
     def check_required_configuration!
+    end
+
+    def builder_class
+      "Amanuensis::Builders::#{configuration.tracker.classify}".constantize
     end
   end
 end

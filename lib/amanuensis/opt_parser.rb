@@ -5,10 +5,10 @@ module Amanuensis
   class OptParser
 
     def self.parse(args)
-      options         = OpenStruct.new
+      options = OpenStruct.new
 
       opt_parser = OptionParser.new do |opts|
-        opts.banner = "Usage: amanuensis [options]"
+        opts.banner = "Usage: amanuensis name [options]"
 
         opts.separator ""
         opts.separator "Specific options:"
