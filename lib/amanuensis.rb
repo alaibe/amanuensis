@@ -1,4 +1,5 @@
-require 'active_support/inflections'
+require 'interchange'
+#require 'active_support/inflections'
 
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"
@@ -14,16 +15,7 @@ require_relative "amanuensis/version"
 require_relative "amanuensis/configuration"
 require_relative "amanuensis/opt_parser"
 require_relative "amanuensis/generator"
-
-push = Push.new
-push.register :mail, Push::Mail.new
-push.register :file, Push::File.new
-
-storage = CodeManager.new
-storage.register :github, CodeManager::Github.new
-
-tracker = Tracker.new
-tracker.register :github, Tracker::Github.new
+require_relative "amanuensis/builder"
 
 module Amanuensis
   class << self
@@ -42,7 +34,17 @@ module Amanuensis
     yield(configuration)
   end
 
-  def self.generate
-    Generator.new(configuration).run!
+  def self.generate(name)
+    Generator.new(name, configuration).run!
   end
+
+  push = Push.new
+  push.register :mail, Push::Mail.new
+  push.register :file, Push::File.new
+
+  storage = CodeManager.new
+  storage.register :github, CodeManager::Github.new
+
+  tracker = Tracker.new
+  tracker.register :github, Tracker::Github.new
 end

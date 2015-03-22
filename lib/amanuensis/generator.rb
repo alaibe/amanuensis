@@ -1,5 +1,5 @@
 module Amanuensis
-  class Generator < Struct.new(:configuration)
+  class Generator < Struct.new(:name, :configuration)
 
     def run!
       check_required_configuration!
@@ -12,20 +12,17 @@ module Amanuensis
     private
 
     def build
+      Builder.new(name, configuration).build
     end
 
     def push(changelog)
     end
 
     def create_release
-      #Release.new(:github_oauth_token).create
     end
 
     def check_required_configuration!
     end
 
-    def builder_class
-      "Amanuensis::Builders::#{configuration.tracker.classify}".constantize
-    end
   end
 end
