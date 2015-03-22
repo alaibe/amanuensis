@@ -6,5 +6,11 @@ module Amanuensis
       @outputs = []
     end
 
+    def tracker_options
+    end
+
+    def push_options
+    end
+
   end
 end

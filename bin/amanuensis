@@ -1,5 +1,13 @@
 #!/usr/bin/env ruby
 
 require_relative '../lib/amanuensis'
+require 'pry'
 
 options = Amanuensis::OptParser.parse(ARGV)
+
+Amanuensis.configure do |config|
+  config.outputs = options.outputs
+  config.tracker = options.tracker
+end
+
+Amanuensis.generate
