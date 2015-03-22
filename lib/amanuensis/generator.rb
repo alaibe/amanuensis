@@ -1,5 +1,5 @@
 module Amanuensis
-  class Generator < Struct.new(:name, :configuration)
+  class Generator < Struct.new(:name, :version, :configuration)
 
     def run!
       check_required_configuration!
@@ -12,7 +12,7 @@ module Amanuensis
     private
 
     def changelog
-      @changelog ||= Builder.new(name, from, configuration).build
+      @changelog ||= Builder.new(name, version, from, configuration).build
     end
 
     def push_changelog
@@ -32,7 +32,7 @@ module Amanuensis
 
     def create_release
       if configuration.create_release
-        CodeManager.create_release name, configuration.oauth_token
+        CodeManager.create_release name, version, configuration.oauth_token
       end
     end
 

@@ -3,11 +3,11 @@ module Amanuensis
     class Github
 
       def issues(name, oauth_token, from)
-        client.list_issues(name, state: 'closed')
+        client(oauth_token).list_issues(name, state: 'closed')
       end
 
       def pulls(name, oauth_token, from)
-        client.pull_requests(name, state: 'closed')
+        client(oauth_token).pull_requests(name, state: 'closed')
       end
 
       private

@@ -12,7 +12,7 @@ module Amanuensis
       options.create_release = false
 
       opt_parser = OptionParser.new do |opts|
-        opts.banner = "Usage: amanuensis name [options]"
+        opts.banner = "Usage: amanuensis repo_name version [options]"
 
         opts.separator ""
         opts.separator "Specific options:"

@@ -4,6 +4,7 @@ require_relative '../lib/amanuensis'
 require 'pry'
 
 name    = ARGV[0]
+version = ARGV[1]
 options = Amanuensis::OptParser.parse(ARGV)
 
 Amanuensis.configure do |config|
@@ -14,4 +15,4 @@ Amanuensis.configure do |config|
   config.create_release = options.create_release
 end
 
-Amanuensis.generate name
+Amanuensis.generate name, version

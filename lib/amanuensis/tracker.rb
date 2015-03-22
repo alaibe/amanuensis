@@ -1,5 +1,5 @@
 module Amanuensis
   class Tracker
-    extend Interchange.new
+    extend Interchange.new(:issues, :pulls)
   end
 end
