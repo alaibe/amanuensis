@@ -1,5 +1,5 @@
 module Amanuensis
   class CodeManager
-    include Interchange.new
+    extend Interchange.new(:latest_release, :create_release)
   end
 end

@@ -1,5 +1,5 @@
 module Amanuensis
   class Tracker
-    include Interchange.new
+    extend Interchange.new
   end
 end

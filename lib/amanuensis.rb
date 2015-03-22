@@ -38,13 +38,10 @@ module Amanuensis
     Generator.new(name, configuration).run!
   end
 
-  push = Push.new
-  push.register :mail, Push::Mail.new
-  push.register :file, Push::File.new
+  Push.register :mail, Push::Mail.new
+  Push.register :file, Push::File.new
 
-  storage = CodeManager.new
-  storage.register :github, CodeManager::Github.new
+  CodeManager.register :github, CodeManager::Github.new
 
-  tracker = Tracker.new
-  tracker.register :github, Tracker::Github.new
+  Tracker.register :github, Tracker::Github.new
 end
