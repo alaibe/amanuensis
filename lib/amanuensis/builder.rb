@@ -18,6 +18,7 @@ module Amanuensis
         changelog << "* [##{pull.number}](#{pull.html_url}) #{pull.title}\n"
       end
 
+      changelog << "\n"
       changelog
     end
 

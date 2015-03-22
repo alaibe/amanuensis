@@ -16,7 +16,7 @@ module Amanuensis
     end
 
     def push_changelog
-      configuration.push.map do |type|
+      @push_changelog ||= configuration.push.map do |type|
         Push.use type
         Push.run changelog
       end
