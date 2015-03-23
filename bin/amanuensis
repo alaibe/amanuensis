@@ -12,7 +12,9 @@ Amanuensis.configure do |config|
   config.tracker        = options.tracker
   config.code_manager   = options.code_manager
   config.oauth_token    = options.oauth_token
-  config.create_release = options.create_release
+  config.create_release = options.create_releaso
+
+  con
 end
 
 Amanuensis.generate name, version
