@@ -3,18 +3,4 @@
 require_relative '../lib/amanuensis'
 require 'pry'
 
-name    = ARGV[0]
-version = ARGV[1]
-options = Amanuensis::OptParser.parse(ARGV)
-
-Amanuensis.configure do |config|
-  config.push           = options.push
-  config.tracker        = options.tracker
-  config.code_manager   = options.code_manager
-  config.oauth_token    = options.oauth_token
-  config.create_release = options.create_releaso
-
-  con
-end
-
-Amanuensis.generate name, version
+Amanuensis::CLI.start(ARGV)

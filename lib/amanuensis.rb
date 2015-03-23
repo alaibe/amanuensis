@@ -1,5 +1,7 @@
 require 'interchange'
 require 'octokit'
+require 'thor'
+require 'action_mailer'
 
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"
@@ -13,7 +15,7 @@ require_relative "amanuensis/tracker/github"
 
 require_relative "amanuensis/version"
 require_relative "amanuensis/configuration"
-require_relative "amanuensis/opt_parser"
+require_relative "amanuensis/cli"
 require_relative "amanuensis/generator"
 require_relative "amanuensis/builder"
 
