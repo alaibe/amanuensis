@@ -1,5 +1,5 @@
 module Amanuensis
-  class Generator < Struct.new(:name, :configurations)
+  class Generator < Struct.new(:configurations)
 
     def run!
       valid_configurations!
@@ -29,7 +29,7 @@ module Amanuensis
 
     def build_changelog
       verbose "Build changelog for #{version}" do
-        Builder.new(name, version, from, configurations[tracker]).build
+        Builder.new(repo, version, from, configurations[tracker]).build
       end
     end
 
@@ -47,12 +47,12 @@ module Amanuensis
     end
 
     def latest_release
-      @latest_release ||= CodeManager.latest_release name, configurations[code_manager] rescue nil
+      @latest_release ||= CodeManager.latest_release configurations[code_manager] rescue nil
     end
 
     def create_release
       verbose 'Create release' do
-        CodeManager.create_release name, version, configurations[code_manager]
+        CodeManager.create_release version, configurations[code_manager]
       end
     end
 
@@ -88,6 +88,10 @@ module Amanuensis
 
     def code_manager
       @code_manager ||= configurations[:global].code_manager
+    end
+
+    def repo
+      @repo ||= configurations[code_manager].repo
     end
 
   end

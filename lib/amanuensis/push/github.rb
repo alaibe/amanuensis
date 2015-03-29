@@ -2,7 +2,7 @@ module Amanuensis
   class Push
     class Github
 
-      def run(changelog)
+      def run(changelog, configuration)
       end
 
     end

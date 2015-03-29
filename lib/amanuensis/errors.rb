@@ -18,7 +18,7 @@ module Amanuensis
   class GithubConfigurationError < StandardError
 
     def message
-      'The oauth token can\'t be blank or nil'
+      'The oauth token and the repo can\'t be blank or nil'
     end
 
   end

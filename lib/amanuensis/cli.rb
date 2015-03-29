@@ -1,7 +1,7 @@
 module Amanuensis
   class CLI < Thor
 
-    desc "generate <repo>", "Generate a changelog for the repo and to the version specified"
+    desc "generate", "Generate a changelog"
     option :push,         type: :array,   aliases: :p, default: [:file]
     option :tracker,      type: :string,  aliases: :t, default: :github
     option :code_manager, type: :string,  aliases: :c, default: :github
@@ -10,7 +10,7 @@ module Amanuensis
     option :github,       type: :hash,    aliases: :g
     option :mail,         type: :hash,    aliases: :m
     option :file,         type: :hash,    aliases: :f
-    def generate(name)
+    def generate
       Amanuensis.configure do |config|
         config.push         = options.push
         config.tracker      = options.tracker
@@ -41,7 +41,7 @@ module Amanuensis
         config.pony = options.mail
       end
 
-      Amanuensis.generate name
+      Amanuensis.generate
     end
 
   end
