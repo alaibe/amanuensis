@@ -3,19 +3,15 @@ module Amanuensis
     class Mail
 
       def run(changelog)
-        Mailer.push(changelog).deliver!
+        Pony.mail({
+          :to => 'you@example.com',
+          :from => 'me@example.com',
+          :subject => 'hi',
+          :body => 'Hello there.'
+        })
       end
 
     end
 
-    class Mailer < ActionMailer::Base
-
-      def push(changelog)
-        mail(subject: "[Release] amanuensis") do |format|
-          render text: changelog
-        end
-      end
-
-    end
   end
 end

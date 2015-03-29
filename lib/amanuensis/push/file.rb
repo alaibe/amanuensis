@@ -2,28 +2,27 @@ module Amanuensis
   class Push
     class File
 
-      FILE_NAME = 'Changelog.md'
-
-      def run(changelog)
-        if ::File.exists?(FILE_NAME)
-          prepend(changelog)
+      def run(changelog, configuration)
+        file_name = configuration.file_name
+        if ::File.exists?(file_name)
+          prepend(changelog, file_name)
         else
-          create(changelog)
+          create(changelog. file_name)
         end
       end
 
       private
 
-      def create(changelog)
-        f = ::File.new(FILE_NAME, 'w')
+      def create(changelog, file_name)
+        f = ::File.new(file_name, 'w')
         f.write changelog
         f.close
       end
 
-      def prepend(changelog)
-        ::File.open(FILE_NAME, 'r') do |orig|
-          ::File.unlink(FILE_NAME)
-          ::File.open(FILE_NAME, 'w') do |new|
+      def prepend(changelog, file_name)
+        ::File.open(file_name, 'r') do |orig|
+          ::File.unlink(file_name)
+          ::File.open(file_name, 'w') do |new|
             new.write changelog
             new.write orig.read
           end

@@ -6,7 +6,9 @@ module Amanuensis
 
       CodeManager.use configuration.code_manager
 
-      create_release if push_changelog.all?
+      result = push_changelog
+
+      create_release if result.all?
     end
 
     private
@@ -18,7 +20,7 @@ module Amanuensis
     def push_changelog
       @push_changelog ||= configuration.push.map do |type|
         Push.use type
-        Push.run changelog
+        Push.run changelog, configuration
       end
     end
 
