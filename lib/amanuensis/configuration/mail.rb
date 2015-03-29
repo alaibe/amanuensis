@@ -8,7 +8,7 @@ module Amanuensis
         @pony = {}
       end
 
-      def valid?
+      def valid!
         raise MailConfigurationError if pony.blank?
       end
 

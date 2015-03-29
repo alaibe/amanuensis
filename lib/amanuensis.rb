@@ -2,7 +2,7 @@ require 'interchange'
 require 'octokit'
 require 'thor'
 require 'pony'
-require 'active_support/object'
+require 'active_support/core_ext/object/blank'
 
 require_relative "amanuensis/version"
 require_relative "amanuensis/cli"
@@ -43,17 +43,8 @@ module Amanuensis
     }
   end
 
-  def self.configure(type = nil)
-    case type.to_sym
-    when :github
-      yield(configurations[:github])
-    when :mail
-      yield(configurations[:mail])
-    when :file
-      yield(configurations[:file])
-    else
-      yield(configurations[:global])
-    end
+  def self.configure(type = :global)
+    yield(configurations[type.to_sym])
   end
 
   def self.generate(name, version)

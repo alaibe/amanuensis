@@ -16,14 +16,24 @@ module Amanuensis
       end
 
       Amanuensis.configure :github do |config|
-        config.oauth_token = options.github.oauth_token
+        break if options.github.blank?
+
+        options.github.each do |key, value|
+          config.send "#{key}=", value
+        end
       end
 
       Amanuensis.configure :file do |config|
-        config.file_name = options.file.file_name
+        break if options.file.blank?
+
+        options.file.each do |key, value|
+          config.send "#{key}=", value
+        end
       end
 
       Amanuensis.configure :mail do |config|
+        break if options.mail.blank?
+
         config.pony = options.mail
       end
 

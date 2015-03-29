@@ -4,7 +4,7 @@ module Amanuensis
 
       attr_accessor :oauth_token
 
-      def valid?
+      def valid!
         raise GithubConfigurationError if oauth_token.blank?
       end
 
