@@ -7,7 +7,7 @@ module Amanuensis
         if ::File.exists?(file_name)
           prepend(changelog, file_name)
         else
-          create(changelog. file_name)
+          create(changelog, file_name)
         end
       end
 
