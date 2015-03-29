@@ -1,7 +1,6 @@
 require 'interchange'
 require 'octokit'
 require 'thor'
-require 'action_mailer'
 
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"

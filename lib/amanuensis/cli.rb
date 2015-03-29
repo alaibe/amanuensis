@@ -18,7 +18,6 @@ module Amanuensis
 
       Amanuensis.generate name, version
     end
-    alias_method :g, :generate
 
   end
 end

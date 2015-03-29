@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Amanuensis::VERSION
   spec.authors       = ["Anthony Laibe"]
   spec.email         = ["anthony@laibe.cc"]
-  spec.summary       = %q{}
-  spec.description   = %q{}
+  spec.summary       = %q{Changelog generator}
+  spec.description   = %q{Changelog generator}
   spec.homepage      = "https://github.com/alaibe/amanuensis"
   spec.license       = "MIT"
 
@@ -19,7 +19,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "octokit"
-  spec.add_dependency "actionmailer"
+  spec.add_dependency "pony"
   spec.add_dependency "thor"
 
   spec.add_development_dependency "bundler", "~> 1.7"
