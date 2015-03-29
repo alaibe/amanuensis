@@ -1,6 +1,6 @@
 module Amanuensis
   class Configuration
-    attr_accessor :push, :tracker, :code_manager, :verbose
+    attr_accessor :push, :tracker, :code_manager, :verbose, :version
 
     def initialize
       @push         = [:file]

@@ -1,5 +1,5 @@
 module Amanuensis
-  class Generator < Struct.new(:name, :version, :configurations)
+  class Generator < Struct.new(:name, :configurations)
 
     def run!
       valid_configurations!
@@ -72,6 +72,14 @@ module Amanuensis
           configurations[:github].valid!
         end
       end
+    end
+
+    def version
+      @version ||= configurations[:global].version || version_from_latest_release
+    end
+
+    def version_from_latest_release
+
     end
 
     def push

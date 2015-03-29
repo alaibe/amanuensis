@@ -6,14 +6,16 @@ module Amanuensis
     option :tracker,      type: :string,  aliases: :t, default: :github
     option :code_manager, type: :string,  aliases: :c, default: :github
     option :verbose,      type: :boolean, aliases: :v, default: false
+    option :version,      type: :string
     option :github,       type: :hash,    aliases: :g
     option :mail,         type: :hash,    aliases: :m
     option :file,         type: :hash,    aliases: :f
-    def generate(name, version)
+    def generate(name, version = nil)
       Amanuensis.configure do |config|
         config.push         = options.push
         config.tracker      = options.tracker
         config.code_manager = options.code_manager
+        config.version      = options.version
         config.verbose      = options.verbose
       end
 
