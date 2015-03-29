@@ -8,7 +8,7 @@ module Amanuensis
         @file_name = 'Changelog.md'
       end
 
-      def valid?
+      def valid!
         raise FileConfigurationError if file_name.blank?
       end
 

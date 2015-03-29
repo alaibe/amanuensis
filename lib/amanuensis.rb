@@ -9,6 +9,7 @@ require_relative "amanuensis/cli"
 require_relative "amanuensis/generator"
 require_relative "amanuensis/builder"
 require_relative "amanuensis/errors"
+require_relative "amanuensis/logger"
 
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"

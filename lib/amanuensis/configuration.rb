@@ -1,11 +1,12 @@
 module Amanuensis
   class Configuration
-    attr_accessor :push, :tracker, :code_manager
+    attr_accessor :push, :tracker, :code_manager, :verbose
 
     def initialize
-      @push           = [:file]
-      @code_manager   = :github
-      @tracker        = :github
+      @push         = [:file]
+      @code_manager = :github
+      @tracker      = :github
+      @verbose      = false
     end
 
     def valid!

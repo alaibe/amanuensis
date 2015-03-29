@@ -2,8 +2,6 @@ module Amanuensis
   class Builder < Struct.new(:name, :version, :from, :configuration)
 
     def build
-      Tracker.use configuration.tracker
-
       changelog = "## #{version}-#{Time.now.strftime('%d/%m/%Y %H:%M:%S')}\n"
       changelog << "\n"
 
