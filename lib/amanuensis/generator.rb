@@ -10,7 +10,7 @@ module Amanuensis
       changelog = build_changelog
       result    = push_changelog(changelog)
 
-      #create_release if result.all?
+      create_release if result.all?
     end
 
     private

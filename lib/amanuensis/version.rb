@@ -20,6 +20,8 @@ module Amanuensis
 
     def previous
       return [0, 0, 0] if release.nil?
+
+      release['tag_name'].split('.').map(&:to_i)
     end
 
   end
