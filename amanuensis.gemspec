@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["anthony@laibe.cc"]
   spec.summary       = %q{Changelog generator}
   spec.description   = %q{Changelog generator}
-  spec.homepage      = "https://github.com/alaibe/amanuensis"
+  spec.homepage      = "http://alaibe.github.io/amanuensis"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
