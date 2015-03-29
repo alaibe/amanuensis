@@ -17,6 +17,7 @@ require_relative "amanuensis/code_manager/github"
 require_relative "amanuensis/push"
 require_relative "amanuensis/push/mail"
 require_relative "amanuensis/push/file"
+require_relative "amanuensis/push/github"
 
 require_relative "amanuensis/tracker"
 require_relative "amanuensis/tracker/github"
