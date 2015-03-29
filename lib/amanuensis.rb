@@ -53,8 +53,9 @@ module Amanuensis
     Generator.new(configurations).run!
   end
 
-  Push.register :mail, Push::Mail.new
-  Push.register :file, Push::File.new
+  Push.register :mail,   Push::Mail.new
+  Push.register :file,   Push::File.new
+  Push.register :github, Push::Github.new
 
   CodeManager.register :github, CodeManager::Github.new
 

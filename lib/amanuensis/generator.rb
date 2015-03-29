@@ -4,8 +4,8 @@ module Amanuensis
     def run!
       valid_configurations!
 
-      CodeManager.use code_manager
-      Tracker.use     tracker
+      CodeManager.use code_manager.to_sym
+      Tracker.use     tracker.to_sym
 
       changelog = build_changelog
       result    = push_changelog(changelog)
@@ -34,10 +34,10 @@ module Amanuensis
     end
 
     def push_changelog(changelog)
-      push.each do |type|
-        Push.use type
+      push.map do |type|
+        Push.use type.to_sym
         verbose "Push on #{type}" do
-          Push.run changelog, configurations[type]
+          Push.run changelog, configurations[type.to_sym]
         end
       end
     end
