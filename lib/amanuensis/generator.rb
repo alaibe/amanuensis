@@ -10,7 +10,7 @@ module Amanuensis
       changelog = build_changelog
       result    = push_changelog(changelog)
 
-      create_release if result.all?
+      #create_release if result.all?
     end
 
     private
@@ -28,7 +28,7 @@ module Amanuensis
     end
 
     def build_changelog
-      verbose 'Build changelog' do
+      verbose "Build changelog for #{version}" do
         Builder.new(name, version, from, configurations[tracker]).build
       end
     end
@@ -47,7 +47,7 @@ module Amanuensis
     end
 
     def latest_release
-      @latest_release ||= CodeManager.latest_release name, configurations[code_manager]
+      @latest_release ||= CodeManager.latest_release name, configurations[code_manager] rescue nil
     end
 
     def create_release
@@ -75,11 +75,7 @@ module Amanuensis
     end
 
     def version
-      @version ||= configurations[:global].version || version_from_latest_release
-    end
-
-    def version_from_latest_release
-
+      @version = Version.new(latest_release, configurations[:global]).get
     end
 
     def push

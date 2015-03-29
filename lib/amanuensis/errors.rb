@@ -7,6 +7,14 @@ module Amanuensis
 
   end
 
+  class GlobalConfigurationVersionError < StandardError
+
+    def message
+      'The version must be major, minor or patch'
+    end
+
+  end
+
   class GithubConfigurationError < StandardError
 
     def message

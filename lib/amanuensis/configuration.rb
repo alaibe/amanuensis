@@ -7,11 +7,16 @@ module Amanuensis
       @code_manager = :github
       @tracker      = :github
       @verbose      = false
+      @version      = :patch
     end
 
     def valid!
       if push.blank? || code_manager.blank? || tracker.blank?
         raise GlobalConfigurationError
+      end
+
+      if !([:major, :minor, :patch].include? version.to_sym)
+        raise GlobalConfigurationVersionError
       end
     end
 

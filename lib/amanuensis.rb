@@ -48,8 +48,8 @@ module Amanuensis
     yield(configurations[type.to_sym])
   end
 
-  def self.generate(name, version)
-    Generator.new(name, version, configurations).run!
+  def self.generate(name)
+    Generator.new(name, configurations).run!
   end
 
   Push.register :mail, Push::Mail.new

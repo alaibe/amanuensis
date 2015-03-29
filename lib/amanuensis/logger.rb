@@ -5,12 +5,15 @@ module Amanuensis
 
     def call(message, block)
       puts "#{message}"
+      result = nil
 
       duration = Benchmark.realtime do
-        block.call
+        result = block.call
       end
 
       puts "#{message} ends after #{duration}s"
+
+      result
     end
 
   end
