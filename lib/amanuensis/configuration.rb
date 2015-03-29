@@ -8,5 +8,11 @@ module Amanuensis
       @tracker        = :github
     end
 
+    def valid!
+      if push.blank? || code_manager.blank? || tracker.blank?
+        raise GlobalConfigurationError
+      end
+    end
+
   end
 end

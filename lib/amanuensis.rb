@@ -2,6 +2,7 @@ require 'interchange'
 require 'octokit'
 require 'thor'
 require 'pony'
+require 'active_support/object'
 
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"

@@ -1,5 +1,5 @@
 module Amanuensis
-  class Generator < Struct.new(:name, :version, :configuration)
+  class Generator < Struct.new(:name, :version, :configurations)
 
     def run!
       check_required_configuration!
@@ -33,12 +33,11 @@ module Amanuensis
     end
 
     def create_release
-      if configuration.create_release
-        CodeManager.create_release name, version, configuration.oauth_token
-      end
+      CodeManager.create_release name, version, configuration.oauth_token
     end
 
     def check_required_configuration!
+      configurations.values.map(&:valid!)
     end
 
   end
