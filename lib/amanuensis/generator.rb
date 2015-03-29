@@ -2,7 +2,7 @@ module Amanuensis
   class Generator < Struct.new(:name, :version, :configurations)
 
     def run!
-      check_required_configuration!
+      valid_configurations!
 
       CodeManager.use configuration.code_manager
 
@@ -36,7 +36,7 @@ module Amanuensis
       CodeManager.create_release name, version, configuration.oauth_token
     end
 
-    def check_required_configuration!
+    def valid_configurations!
       configurations.values.map(&:valid!)
     end
 

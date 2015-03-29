@@ -4,6 +4,12 @@ require 'thor'
 require 'pony'
 require 'active_support/object'
 
+require_relative "amanuensis/version"
+require_relative "amanuensis/cli"
+require_relative "amanuensis/generator"
+require_relative "amanuensis/builder"
+require_relative "amanuensis/errors"
+
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"
 
@@ -19,14 +25,9 @@ require_relative "amanuensis/configuration/github"
 require_relative "amanuensis/configuration/mail"
 require_relative "amanuensis/configuration/file"
 
-require_relative "amanuensis/version"
-require_relative "amanuensis/cli"
-require_relative "amanuensis/generator"
-require_relative "amanuensis/builder"
-
 module Amanuensis
   class << self
-    attr_accessor :configuration
+    attr_accessor :configurations
   end
 
   def self.configurations
