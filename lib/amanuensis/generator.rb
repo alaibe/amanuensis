@@ -5,6 +5,7 @@ module Amanuensis
       valid_configurations!
 
       CodeManager.use code_manager
+      Tracker.use     tracker
 
       changelog = build_changelog
       result    = push_changelog(changelog)
@@ -28,7 +29,6 @@ module Amanuensis
 
     def build_changelog
       verbose 'Build changelog' do
-        Tracker.use tracker
         Builder.new(name, version, from, configurations[tracker]).build
       end
     end
