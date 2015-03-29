@@ -3,7 +3,7 @@ module Amanuensis
     class Github
 
       def issues(name, oauth_token, from)
-        filter client(oauth_token).list_issues(name, state: 'closed'), from
+        filter(client(oauth_token).list_issues(name, state: 'closed'), from).select { |issue| !issue['html_url'].include?('pull') }
       end
 
       def pulls(name, oauth_token, from)
@@ -13,7 +13,7 @@ module Amanuensis
       private
 
       def filter(list, from)
-        list.select { |object| object.closed_at < from.to_time }
+        list.select { |object| object.closed_at > from.to_time }
       end
 
       def client(oauth_token)
