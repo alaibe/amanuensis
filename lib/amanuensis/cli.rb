@@ -2,13 +2,13 @@ module Amanuensis
   class CLI < Thor
 
     desc "generate <repo> <version>", "Generate a changelog for the repo and to the version specified"
-    option :push,         type: :array,   default: [:file]
-    option :tracker,      type: :string,  default: :github
-    option :code_manager, type: :string,  default: :github
-    option :verbose,      type: :boolean, default: false
-    option :github,       type: :hash
-    option :mail,         type: :hash
-    option :file,         type: :hash
+    option :push,         type: :array,   aliases: :p, default: [:file]
+    option :tracker,      type: :string,  aliases: :t, default: :github
+    option :code_manager, type: :string,  aliases: :c, default: :github
+    option :verbose,      type: :boolean, aliases: :v, default: false
+    option :github,       type: :hash,    aliases: :g
+    option :mail,         type: :hash,    aliases: :m
+    option :file,         type: :hash,    aliases: :f
     def generate(name, version)
       Amanuensis.configure do |config|
         config.push         = options.push
