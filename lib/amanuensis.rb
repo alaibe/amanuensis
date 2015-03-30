@@ -14,6 +14,7 @@ require_relative "amanuensis/logger"
 
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"
+require_relative "amanuensis/code_manager/bitbucket"
 
 require_relative "amanuensis/push"
 require_relative "amanuensis/push/mail"
@@ -29,6 +30,7 @@ require_relative "amanuensis/configuration/github"
 require_relative "amanuensis/configuration/mail"
 require_relative "amanuensis/configuration/file"
 require_relative "amanuensis/configuration/trello"
+require_relative "amanuensis/configuration/bitbucket"
 
 module Amanuensis
   class << self
@@ -41,11 +43,12 @@ module Amanuensis
 
   def self.reset
     @configurations = {
-      global: Configuration.new,
-      github: Configuration::Github.new,
-      trello: Configuration::Trello.new,
-      mail:   Configuration::Mail.new,
-      file:   Configuration::File.new
+      global:    Configuration.new,
+      github:    Configuration::Github.new,
+      bitbucket: Configuration::Bitbucket.new,
+      trello:    Configuration::Trello.new,
+      mail:      Configuration::Mail.new,
+      file:      Configuration::File.new
     }
   end
 
@@ -62,6 +65,7 @@ module Amanuensis
   Push.register :github, Push::Github.new
 
   CodeManager.register :github, CodeManager::Github.new
+  CodeManager.register :bitbucket, CodeManager::Bitbucket.new
 
   Tracker.register :github, Tracker::Github.new
   Tracker.register :trello, Tracker::Trello.new

@@ -23,6 +23,13 @@ module Amanuensis
 
   end
 
+  class BitbucketConfigurationError < StandardError
+
+    def message
+    end
+
+  end
+
   class TrelloConfigurationError < StandardError
 
     def message
