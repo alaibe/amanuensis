@@ -2,12 +2,12 @@ module Amanuensis
   class Tracker
     class Github
 
-      def issues(repo, oauth_token, from)
-        filter(client(oauth_token).list_issues(repo, state: 'closed'), from).select { |issue| !issue['html_url'].include?('pull') }
+      def issues(from, configuration)
+        filter(client(configuration.oauth_token).list_issues(configuration.repo, state: 'closed'), from).select { |issue| !issue['html_url'].include?('pull') }
       end
 
-      def pulls(repo, oauth_token, from)
-        filter client(oauth_token).pull_requests(repo, state: 'closed'), from
+      def pulls(from, configuration)
+        filter client(configuration.oauth_token).pull_requests(configuration.repo, state: 'closed'), from
       end
 
       private

@@ -1,5 +1,5 @@
 module Amanuensis
-  class Builder < Struct.new(:repo, :version, :from, :configuration)
+  class Builder < Struct.new(:version, :from, :configuration)
 
     def build
       changelog = "## #{version}-#{Time.now.strftime('%d/%m/%Y %H:%M:%S')}\n"
@@ -23,11 +23,11 @@ module Amanuensis
     private
 
     def issues
-      Tracker.issues(repo, configuration.oauth_token, from)
+      Tracker.issues(configuration, from)
     end
 
     def pulls
-      Tracker.pulls(repo, configuration.oauth_token, from)
+      Tracker.pulls(configuration, from)
     end
 
   end

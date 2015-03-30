@@ -23,6 +23,14 @@ module Amanuensis
 
   end
 
+  class TrelloConfigurationError < StandardError
+
+    def message
+      'The key, token, board and list can\'t be blank or nil'
+    end
+
+  end
+
   class FileConfigurationError < StandardError
 
     def message

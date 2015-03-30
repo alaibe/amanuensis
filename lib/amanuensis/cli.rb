@@ -8,6 +8,7 @@ module Amanuensis
     option :version,      type: :string,  aliases: :u, default: :patch
     option :verbose,      type: :boolean, aliases: :v, default: false
     option :github,       type: :hash,    aliases: :g
+    option :trello,       type: :hash,    aliases: :b
     option :mail,         type: :hash,    aliases: :m
     option :file,         type: :hash,    aliases: :f
     def generate
@@ -39,6 +40,14 @@ module Amanuensis
         break if options.mail.blank?
 
         config.pony = options.mail
+      end
+
+      Amanuensis.configure :trello do |config|
+        break if options.trello.blank?
+
+        options.trello.each do |key, value|
+          config.send "#{key}=", value
+        end
       end
 
       Amanuensis.generate

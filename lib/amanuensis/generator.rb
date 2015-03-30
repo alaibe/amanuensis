@@ -29,7 +29,7 @@ module Amanuensis
 
     def build_changelog
       verbose "Build changelog for #{version}" do
-        Builder.new(repo, version, from, configurations[tracker]).build
+        Builder.new(version, from, configurations[tracker]).build
       end
     end
 
@@ -60,17 +60,12 @@ module Amanuensis
       verbose 'Valid configuration' do
         configurations[:global].valid!
 
-        if push.include? :file
-          configurations[:file].valid!
+        push.each do |type|
+          configurations[type.to_sym].valid!
         end
 
-        if push.include? :mail
-          configurations[:mail].valid!
-        end
-
-        if [code_manager, tracker].include? :github
-          configurations[:github].valid!
-        end
+        configurations[tracker.to_sym].valid!
+        configurations[code_manager.to_sym].valid!
       end
     end
 
@@ -88,10 +83,6 @@ module Amanuensis
 
     def code_manager
       @code_manager ||= configurations[:global].code_manager
-    end
-
-    def repo
-      @repo ||= configurations[code_manager].repo
     end
 
   end
