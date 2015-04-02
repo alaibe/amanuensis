@@ -43,7 +43,7 @@ module Amanuensis
     end
 
     def from
-      latest_release.created_at rescue Date.new(1900)
+      latest_release.created_at
     end
 
     def latest_release

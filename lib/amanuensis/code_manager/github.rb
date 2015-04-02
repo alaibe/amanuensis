@@ -3,7 +3,10 @@ module Amanuensis
     class Github
 
       def latest_release(configuration)
-        client(configuration.oauth_token).latest_release(configuration.repo)
+        hash       = client(configuration.oauth_token).latest_release(configuration.repo)
+        created_at = hash.created_at rescue Date.new(1900)
+
+        Release.new hash.created_at, hash.tag_name
       end
 
       def create_release(version, configuration)
