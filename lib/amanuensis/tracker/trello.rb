@@ -9,11 +9,11 @@ module Amanuensis
         board.cards
       end
 
-    end
 
-    def pulls(_, _)
-      []
-    end
+      def pulls(_, _)
+        []
+      end
 
+    end
   end
 end

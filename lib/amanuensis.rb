@@ -26,6 +26,7 @@ require_relative "amanuensis/push/fake"
 require_relative "amanuensis/tracker"
 require_relative "amanuensis/tracker/github"
 require_relative "amanuensis/tracker/trello"
+require_relative "amanuensis/tracker/pivotal"
 require_relative "amanuensis/tracker/fake"
 
 require_relative "amanuensis/configuration"
@@ -33,6 +34,7 @@ require_relative "amanuensis/configuration/github"
 require_relative "amanuensis/configuration/mail"
 require_relative "amanuensis/configuration/file"
 require_relative "amanuensis/configuration/trello"
+require_relative "amanuensis/configuration/pivotal"
 require_relative "amanuensis/configuration/bitbucket"
 require_relative "amanuensis/configuration/fake"
 
@@ -51,6 +53,7 @@ module Amanuensis
       github:    Configuration::Github.new,
       bitbucket: Configuration::Bitbucket.new,
       trello:    Configuration::Trello.new,
+      pivotal:   Configuration::Pivotal.new,
       mail:      Configuration::Mail.new,
       file:      Configuration::File.new,
       fake:      Configuration::Fake.new
@@ -74,7 +77,8 @@ module Amanuensis
   CodeManager.register :bitbucket, CodeManager::Bitbucket.new
   CodeManager.register :fake,      CodeManager::Fake.new
 
-  Tracker.register :github, Tracker::Github.new
-  Tracker.register :trello, Tracker::Trello.new
-  Tracker.register :fake,   Tracker::Fake.new
+  Tracker.register :github,  Tracker::Github.new
+  Tracker.register :trello,  Tracker::Trello.new
+  Tracker.register :fake,    Tracker::Fake.new
+  Tracker.register :pivotal, Tracker::Fake.new
 end
