@@ -8,8 +8,9 @@ module Amanuensis
     option :version,      type: :string,  aliases: :u, default: :patch
     option :verbose,      type: :boolean, aliases: :v, default: false
     option :github,       type: :hash,    aliases: :g
-    option :github,       type: :hash,    aliases: :b
+    option :bitbucket,    type: :hash,    aliases: :b
     option :trello,       type: :hash,    aliases: :c
+    option :pivotal,      type: :hash,    aliases: :i
     option :mail,         type: :hash,    aliases: :m
     option :file,         type: :hash,    aliases: :f
     def generate
@@ -55,6 +56,14 @@ module Amanuensis
         break if options.bitbucket.blank?
 
         options.bitbucket.each do |key, value|
+          config.send "#{key}=", value
+        end
+      end
+
+      Amanuensis.configure :pivotal do |config|
+        break if options.pivotal.blank?
+
+        options.pivotal.each do |key, value|
           config.send "#{key}=", value
         end
       end

@@ -24,6 +24,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "interchange"
   spec.add_dependency "thor"
   spec.add_dependency "ruby-trello"
+  spec.add_dependency "pivotal-tracker"
 
   spec.add_development_dependency "bundler"
   spec.add_development_dependency "rake"
