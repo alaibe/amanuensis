@@ -3,7 +3,7 @@ module Amanuensis
     class Fake
 
       def latest_release(_)
-        Release.new(created_at: 1.day.ago, tag: '1.0.0')
+        Release.new(Date.new(2015), '1.0.0')
       end
 
       def create_release(_, _)

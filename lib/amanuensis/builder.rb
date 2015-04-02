@@ -23,11 +23,11 @@ module Amanuensis
     private
 
     def issues
-      Tracker.issues(configuration, from)
+      Tracker.issues(from, configuration)
     end
 
     def pulls
-      Tracker.pulls(configuration, from)
+      Tracker.pulls(from, configuration)
     end
 
   end

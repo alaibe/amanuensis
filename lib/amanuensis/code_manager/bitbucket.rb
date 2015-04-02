@@ -1,6 +1,6 @@
 module Amanuensis
   class CodeManager
-    class BitBucket
+    class Bitbucket
 
       def latest_release(configuration)
       end

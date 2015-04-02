@@ -17,4 +17,3 @@ module Amanuensis
 
   end
 end
-end

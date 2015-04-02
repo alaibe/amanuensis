@@ -1,7 +1,7 @@
 module Amanuensis
   VERSION = "0.0.1"
 
-  class Version < Struct.new(:release, :configuration)
+  class Version < Struct.new(:tag, :configuration)
 
     def get
       major, minor, patch = *previous
@@ -19,9 +19,7 @@ module Amanuensis
     end
 
     def previous
-      return [0, 0, 0] if release.nil?
-
-      release.tag.split('.').map(&:to_i)
+      tag.split('.').map(&:to_i)
     end
 
   end

@@ -29,7 +29,7 @@ module Amanuensis
 
     def build_changelog
       verbose "Build changelog for #{version}" do
-        Builder.new(version, from, configurations[tracker]).build
+        Builder.new(version, latest_release.created_at, configurations[tracker]).build
       end
     end
 
@@ -40,10 +40,6 @@ module Amanuensis
           Push.run changelog, configurations[type.to_sym]
         end
       end
-    end
-
-    def from
-      latest_release.created_at
     end
 
     def latest_release
@@ -70,7 +66,7 @@ module Amanuensis
     end
 
     def version
-      @version = Version.new(latest_release, configurations[:global]).get
+      @version = Version.new(latest_release.tag, configurations[:global]).get
     end
 
     def push
