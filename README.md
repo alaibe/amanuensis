@@ -20,7 +20,17 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Command line
+
+### Ruby program
+
+### Integrations
+
+#### Code managers
+
+#### Trackers
+
+#### Push
 
 ## Contributing
 
