@@ -3,7 +3,7 @@ module Amanuensis
     class Mail
 
       def run(changelog, configuration)
-        Pony.mail(configuration.pony)
+        Pony.mail(configuration.pony.merge({ body: changelog }))
       end
 
     end

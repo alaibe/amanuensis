@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe 'File Amanuensis' do
 
-  it 'Generates a file changeloge' do
+  it 'Generates a file changelog' do
     Amanuensis.configure do |config|
       config.push         = [:file]
       config.code_manager = :fake
