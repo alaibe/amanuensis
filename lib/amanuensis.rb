@@ -52,7 +52,8 @@ module Amanuensis
       bitbucket: Configuration::Bitbucket.new,
       trello:    Configuration::Trello.new,
       mail:      Configuration::Mail.new,
-      file:      Configuration::File.new
+      file:      Configuration::File.new,
+      fake:      Configuration::Fake.new
     }
   end
 
@@ -67,10 +68,13 @@ module Amanuensis
   Push.register :mail,   Push::Mail.new
   Push.register :file,   Push::File.new
   Push.register :github, Push::Github.new
+  Push.register :fake,   Push::Fake.new
 
-  CodeManager.register :github, CodeManager::Github.new
+  CodeManager.register :github,    CodeManager::Github.new
   CodeManager.register :bitbucket, CodeManager::Bitbucket.new
+  CodeManager.register :fake,      CodeManager::Fake.new
 
   Tracker.register :github, Tracker::Github.new
   Tracker.register :trello, Tracker::Trello.new
+  Tracker.register :fake,   Tracker::Fake.new
 end
