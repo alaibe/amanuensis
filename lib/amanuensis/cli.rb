@@ -69,6 +69,10 @@ module Amanuensis
       end
 
       Amanuensis.generate
+    rescue GlobalConfigurationVersionError, GlobalConfigurationError,
+      GithubConfigurationError, BitbucketConfigurationError, TrelloConfigurationError,
+      FileConfigurationError, MailConfigurationError => e
+      puts e.message
     end
 
   end
