@@ -1,6 +1,6 @@
 # Amanuensis
 
-TODO: Write a gem description
+Amanuensis is a changelog generator which integrate with all the major code managers and trackers
 
 ## Installation
 
@@ -28,9 +28,32 @@ Or install it yourself as:
 
 #### Code managers
 
+##### Github
+##### Bitbucket
+
 #### Trackers
 
+##### Github
+##### Trello
+##### Pivotal tracker
+
 #### Push
+
+Push is different from others integrations as you can chain them:
+```ruby
+Amanuensis.configure do |config|
+  config.push = [:github, :mail, :file]
+end
+```
+
+This configuration will publish the changelog to your github repository, send an
+e-mail with the changelog as a body and finaly produce a changelog file
+
+##### Github
+##### Mail
+##### File
+
+## Ask for new integration
 
 ## Contributing
 

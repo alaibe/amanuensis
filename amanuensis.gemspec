@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Amanuensis::VERSION
   spec.authors       = ["Anthony Laibe"]
   spec.email         = ["anthony@laibe.cc"]
-  spec.summary       = %q{Changelog generator}
-  spec.description   = %q{Changelog generator}
+  spec.summary       = %q{Amanuensis is a changelog generator}
+  spec.description   = %q{Amanuensis is a changelog generator which integrate with all the major code managers and trackers}
   spec.homepage      = "http://alaibe.github.io/amanuensis"
   spec.license       = "MIT"
 
