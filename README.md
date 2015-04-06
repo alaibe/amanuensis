@@ -117,6 +117,7 @@ Amanuensis.configure :github do |config|
   config.oauth_token = 'my_token'
   config.repo        = 'my_token'
 end
+```
 
 #### Trello
 
@@ -157,6 +158,7 @@ Amanuensis.configure :github do |config|
   config.repo        = 'my_token'
   config.file_name   = 'new_changelog.md'
 end
+```
 
 The option ```file_name``` is not required
 
@@ -174,6 +176,7 @@ Via Ruby:
 Amanuensis.configure :file do |config|
   config.file_name   = 'new_changelog.md'
 end
+```
 
 The option ```file_name``` is not required
 
