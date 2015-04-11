@@ -17,8 +17,8 @@ module Amanuensis
 
       def configure!
         ::Trello.configure do |config|
-          config.developer_public_key = Trello.key
-          config.member_token = Trello.token
+          config.developer_public_key = Amanuensis::Trello.config['key']
+          config.member_token         = Amanuensis::Trello.token
         end
       end
 

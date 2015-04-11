@@ -11,7 +11,7 @@ module Amanuensis
     config_accessor(:repo)
     config_accessor(:file_name)   { 'Changelog.md' }
 
-    def valid!
+    def self.valid!
       true
     end
   end

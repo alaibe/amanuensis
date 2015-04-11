@@ -13,5 +13,5 @@ module Amanuensis
     end
   end
 
-  Tracker.register :pivotal, Trello::Tracker.new
+  Tracker.register :pivotal, Pivotal::Tracker.new
 end

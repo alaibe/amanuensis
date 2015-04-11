@@ -1,10 +1,10 @@
 module Amanuensis
-  class Tracker
-    class Pivotal
+  module Pivotal
+    class Tracker
 
       def issues(from)
-        client = TrackerApi::Client.new(token: configuration.token)
-        project = client.projects.find { |project| project.name == configuration.project }
+        client = TrackerApi::Client.new(token: Pivotal.token)
+        project = client.projects.find { |project| project.name == Pivotal.project }
 
         project.stories.select do |story|
           story.current_state == 'accepted' && story.accepted_at.to_time > from.to_time

@@ -8,11 +8,6 @@ module Amanuensis
         end
       end
 
-      def pulls(from)
-        filter(closed_pulls, from).map do |pull|
-          Pull.new pull['number'], pull['html_url'], pull['title']
-        end
-      end
 
       private
 
@@ -21,17 +16,17 @@ module Amanuensis
       end
 
       def closed_issues
-        client(configuration.oauth_token).list_issues(configuration.repo, state: 'closed').select do |issue|
+        client.list_issues(Github.repo, state: 'closed').select do |issue|
           !issue['html_url'].include?('pull')
         end
       end
 
       def closed_pulls
-        client(configuration.oauth_token).pull_requests(configuration.repo, state: 'closed')
+        client.pull_requests(Github.repo, state: 'closed')
       end
 
-      def client(oauth_token)
-        Octokit::Client.new(access_token: oauth_token, auto_paginate: true)
+      def client
+        Octokit::Client.new(access_token: Github.oauth_token, auto_paginate: true)
       end
 
     end
