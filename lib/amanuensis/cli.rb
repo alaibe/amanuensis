@@ -70,7 +70,8 @@ module Amanuensis
 
       Amanuensis.generate
     rescue GlobalConfigurationVersionError, GlobalConfigurationError,
-      GithubConfigurationError, BitbucketConfigurationError, TrelloConfigurationError,
+      GithubConfigurationError,
+      TrelloConfigurationError, PivotalConfigurationError,
       FileConfigurationError, MailConfigurationError => e
       puts e.message
     end

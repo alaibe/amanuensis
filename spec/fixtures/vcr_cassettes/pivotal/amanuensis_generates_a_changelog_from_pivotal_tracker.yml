@@ -1,0 +1,120 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://www.pivotaltracker.com/services/v5/projects
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Ruby/2.2.1 (x86_64-darwin14; ruby) TrackerApi/0.2.7 Faraday/0.9.1
+      X-Trackertoken:
+      - 6d16c6fc41a7ba27cb29d6508027ea88
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 200 OK
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - '"0fedce53601fdc88ab63f94f7792a244"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 375ca21be546a6d956f0968eed4bb65b
+      X-Runtime:
+      - '0.037720'
+      Date:
+      - Sat, 11 Apr 2015 13:27:48 GMT
+      X-Rack-Cache:
+      - miss
+      X-Powered-By:
+      - Phusion Passenger 4.0.41
+      Server:
+      - nginx/1.6.0 + Phusion Passenger 4.0.41
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Access-Control-Allow-Headers:
+      - X-TrackerToken,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Tracker-Warn-Unless-Project-Version-Is
+      X-Tracker-Client-Pinger-Interval:
+      - '12'
+    body:
+      encoding: UTF-8
+      string: '[{"id":1318392,"kind":"project","name":"Amanuensis","version":11,"iteration_length":1,"week_start_day":"Wednesday","point_scale":"0,1,2,3","point_scale_is_custom":false,"bugs_and_chores_are_estimatable":false,"automatic_planning":true,"enable_tasks":true,"time_zone":{"kind":"time_zone","olson_name":"America/Los_Angeles","offset":"-07:00"},"velocity_averaged_over":3,"number_of_done_iterations_to_show":12,"has_google_domain":false,"enable_incoming_emails":true,"initial_velocity":10,"public":false,"atom_enabled":false,"project_type":"private","start_time":"2015-04-01T00:00:00Z","created_at":"2015-04-07T21:41:44Z","updated_at":"2015-04-07T22:01:16Z","account_id":760530,"current_iteration_number":2,"enable_following":true}]'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 13:30:47 GMT
+- request:
+    method: get
+    uri: https://www.pivotaltracker.com/services/v5/projects/1318392/stories
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Ruby/2.2.1 (x86_64-darwin14; ruby) TrackerApi/0.2.7 Faraday/0.9.1
+      X-Trackertoken:
+      - 6d16c6fc41a7ba27cb29d6508027ea88
+  response:
+    status:
+      code: 200
+      message: ''
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Status:
+      - 200 OK
+      X-Tracker-Project-Version:
+      - '11'
+      X-Tracker-Pagination-Total:
+      - '1'
+      X-Tracker-Pagination-Offset:
+      - '0'
+      X-Tracker-Pagination-Limit:
+      - '100'
+      X-Tracker-Pagination-Returned:
+      - '1'
+      X-Ua-Compatible:
+      - IE=Edge,chrome=1
+      Etag:
+      - '"d8f70799a9d8d3140421eeedb6d74afb"'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      X-Request-Id:
+      - 76540ac18bb7749a99cc0c2cce9f641a
+      X-Runtime:
+      - '0.036270'
+      Date:
+      - Sat, 11 Apr 2015 13:27:49 GMT
+      X-Rack-Cache:
+      - miss
+      X-Powered-By:
+      - Phusion Passenger 4.0.41
+      Server:
+      - nginx/1.6.0 + Phusion Passenger 4.0.41
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Credentials:
+      - 'false'
+      Access-Control-Allow-Methods:
+      - GET, POST, PUT, DELETE, OPTIONS
+      Access-Control-Allow-Headers:
+      - X-TrackerToken,DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,X-Tracker-Warn-Unless-Project-Version-Is
+      X-Tracker-Client-Pinger-Interval:
+      - '12'
+    body:
+      encoding: UTF-8
+      string: '[{"kind":"story","id":91989432,"created_at":"2015-04-07T21:42:08Z","updated_at":"2015-04-07T21:53:24Z","accepted_at":"2015-04-07T21:56:09Z","estimate":3,"story_type":"feature","name":"test
+        story","current_state":"accepted","requested_by_id":1641242,"project_id":1318392,"url":"https://www.pivotaltracker.com/story/show/91989432","owner_ids":[],"labels":[]}]'
+    http_version: 
+  recorded_at: Sat, 11 Apr 2015 13:30:48 GMT
+recorded_with: VCR 2.9.3

@@ -3,6 +3,7 @@ require 'octokit'
 require 'thor'
 require 'pony'
 require 'trello'
+require 'tracker_api'
 require 'active_support/core_ext/object/blank'
 
 require_relative "amanuensis/version"
@@ -14,7 +15,6 @@ require_relative "amanuensis/logger"
 
 require_relative "amanuensis/code_manager"
 require_relative "amanuensis/code_manager/github"
-require_relative "amanuensis/code_manager/bitbucket"
 require_relative "amanuensis/code_manager/fake"
 
 require_relative "amanuensis/push"
@@ -35,7 +35,6 @@ require_relative "amanuensis/configuration/mail"
 require_relative "amanuensis/configuration/file"
 require_relative "amanuensis/configuration/trello"
 require_relative "amanuensis/configuration/pivotal"
-require_relative "amanuensis/configuration/bitbucket"
 require_relative "amanuensis/configuration/fake"
 
 module Amanuensis
@@ -51,7 +50,6 @@ module Amanuensis
     @configurations = {
       global:    Configuration.new,
       github:    Configuration::Github.new,
-      bitbucket: Configuration::Bitbucket.new,
       trello:    Configuration::Trello.new,
       pivotal:   Configuration::Pivotal.new,
       mail:      Configuration::Mail.new,
@@ -74,11 +72,10 @@ module Amanuensis
   Push.register :fake,   Push::Fake.new
 
   CodeManager.register :github,    CodeManager::Github.new
-  CodeManager.register :bitbucket, CodeManager::Bitbucket.new
   CodeManager.register :fake,      CodeManager::Fake.new
 
   Tracker.register :github,  Tracker::Github.new
   Tracker.register :trello,  Tracker::Trello.new
   Tracker.register :fake,    Tracker::Fake.new
-  Tracker.register :pivotal, Tracker::Fake.new
+  Tracker.register :pivotal, Tracker::Pivotal.new
 end
