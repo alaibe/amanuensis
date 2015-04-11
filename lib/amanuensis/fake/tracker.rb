@@ -1,13 +1,9 @@
 module Amanuensis
-  class Tracker
-    class Fake
+  module Fake
+    class Tracker
 
       def issues(_, _)
         [Issue.new(1, 'https://www.google.com', 'Issue')]
-      end
-
-      def pulls(_, _)
-        [Pull.new(1, 'https://www.google.com', 'Issue')]
       end
 
     end

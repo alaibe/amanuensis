@@ -3,6 +3,9 @@ require 'octokit'
 module Amanuensis
   module Github
     include ActiveSupport::Configurable
+    config_accessor(:oauth_token)
+    config_accessor(:repo)
+    config_accessor(:file_name)   { 'Changelog.md' }
   end
 end
 

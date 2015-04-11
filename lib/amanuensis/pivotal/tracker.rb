@@ -2,7 +2,7 @@ module Amanuensis
   class Tracker
     class Pivotal
 
-      def issues(from, configuration)
+      def issues(from)
         client = TrackerApi::Client.new(token: configuration.token)
         project = client.projects.find { |project| project.name == configuration.project }
 
@@ -11,11 +11,6 @@ module Amanuensis
         end.map do |story|
           Issue.new story.id, story.url, story.name
         end
-      end
-
-
-      def pulls(_, _)
-        []
       end
 
     end

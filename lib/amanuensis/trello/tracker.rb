@@ -2,7 +2,7 @@ module Amanuensis
   class Tracker
     class Trello
 
-      def issues(from, configuration)
+      def issues(from)
         ::Trello.configure do |config|
           config.developer_public_key = configuration.key
           config.member_token = configuration.token
@@ -15,11 +15,6 @@ module Amanuensis
         end.map do |card|
           Issue.new card.short_id, card.short_url, card.name
         end
-      end
-
-
-      def pulls(_, _)
-        []
       end
 
     end

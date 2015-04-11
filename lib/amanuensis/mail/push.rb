@@ -1,8 +1,8 @@
 module Amanuensis
-  class Push
-    class Mail
+  module Mail
+    class Push
 
-      def run(changelog, configuration)
+      def run(changelog)
         Pony.mail(configuration.pony.merge({ body: changelog }))
       end
 

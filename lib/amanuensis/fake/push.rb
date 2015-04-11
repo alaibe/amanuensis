@@ -1,11 +1,10 @@
 module Amanuensis
-  class Push
-    class Fake
+  module Fake
+    class Push
 
       def run(_, _)
       end
 
     end
-
   end
 end

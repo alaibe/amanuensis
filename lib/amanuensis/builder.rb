@@ -1,5 +1,5 @@
 module Amanuensis
-  class Builder < Struct.new(:version, :from, :configuration)
+  class Builder < Struct.new(:version, :from)
 
     def build
       add_header
@@ -41,11 +41,11 @@ module Amanuensis
     end
 
     def issues
-      @issues ||= Tracker.issues(from, configuration)
+      @issues ||= Tracker.issues(from)
     end
 
     def pulls
-      @pulls ||= Tracker.pulls(from, configuration)
+      @pulls ||= CodeManager.pulls(from)
     end
 
   end

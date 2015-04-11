@@ -1,5 +1,5 @@
 module Amanuensis
-  class Generator < Struct.new(:configurations)
+  class Generator < Struct.new
 
     def run!
       valid_configurations!
@@ -16,7 +16,7 @@ module Amanuensis
     private
 
     def verbose(message, &block)
-      if configurations[:global].verbose
+      if Amanuensis.verbose
         logger.call message, block
       else
         block.call
@@ -29,7 +29,7 @@ module Amanuensis
 
     def build_changelog
       verbose "Build changelog for #{version}" do
-        Builder.new(version, latest_release.created_at, configurations[tracker]).build
+        Builder.new(version, latest_release.created_at).build
       end
     end
 
@@ -37,24 +37,24 @@ module Amanuensis
       push.map do |type|
         Push.use type.to_sym
         verbose "Push on #{type}" do
-          Push.run changelog, configurations[type.to_sym]
+          Push.run changelog
         end
       end
     end
 
     def latest_release
-      @latest_release ||= CodeManager.latest_release configurations[code_manager] rescue nil
+      @latest_release ||= CodeManager.latest_release rescue nil
     end
 
     def create_release
       verbose 'Create release' do
-        CodeManager.create_release version, configurations[code_manager]
+        CodeManager.create_release version
       end
     end
 
     def valid_configurations!
       verbose 'Valid configuration' do
-        configurations[:global].valid!
+        Amanuensis.valid!
 
         push.each do |type|
           configurations[type.to_sym].valid!
@@ -66,19 +66,19 @@ module Amanuensis
     end
 
     def version
-      @version = Version.new(latest_release.tag, configurations[:global]).get
+      @version = Version.new(latest_release.tag).get
     end
 
     def push
-      @push ||= configurations[:global].push
+      @push ||= Amanuensis.push
     end
 
     def tracker
-      @tracker ||= configurations[:global].tracker
+      @tracker ||= Amanuensis.tracker
     end
 
     def code_manager
-      @code_manager ||= configurations[:global].code_manager
+      @code_manager ||= Amanuensis.code_manager
     end
 
   end

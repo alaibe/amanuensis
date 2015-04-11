@@ -1,6 +1,6 @@
 module Amanuensis
-  class CodeManager
-    class Fake
+  module Fake
+    class CodeManager
 
       def latest_release(_)
         Release.new(Date.new(2015), '1.0.0')

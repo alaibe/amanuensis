@@ -1,15 +1,15 @@
 module Amanuensis
-  class Tracker
-    class Github
+  module Github
+    class Tracker
 
-      def issues(from, configuration)
-        filter(closed_issues(configuration), from).map do |issue|
+      def issues(from)
+        filter(closed_issues, from).map do |issue|
           Issue.new issue['number'], issue['html_url'], issue['title']
         end
       end
 
-      def pulls(from, configuration)
-        filter(closed_pulls(configuration), from).map do |pull|
+      def pulls(from)
+        filter(closed_pulls, from).map do |pull|
           Pull.new pull['number'], pull['html_url'], pull['title']
         end
       end
@@ -20,13 +20,13 @@ module Amanuensis
         list.select { |object| object.closed_at > from.to_time }
       end
 
-      def closed_issues(configuration)
+      def closed_issues
         client(configuration.oauth_token).list_issues(configuration.repo, state: 'closed').select do |issue|
           !issue['html_url'].include?('pull')
         end
       end
 
-      def closed_pulls(configuration)
+      def closed_pulls
         client(configuration.oauth_token).pull_requests(configuration.repo, state: 'closed')
       end
 

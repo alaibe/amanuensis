@@ -19,6 +19,11 @@ require_relative 'file'
 
 module Amanuensis
   include ActiveSupport::Configurable
+  config_accessor(:push)         { [:file] }
+  config_accessor(:tracker)      { :github }
+  config_accessor(:code_manager) { :github }
+  config_accessor(:verbose)      { false }
+  config_accessor(:version)      { :patch }
 
   def self.generate
     Generator.new(configurations).run!

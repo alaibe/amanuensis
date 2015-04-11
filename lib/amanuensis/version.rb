@@ -1,12 +1,12 @@
 module Amanuensis
   VERSION = "0.0.1"
 
-  class Version < Struct.new(:tag, :configuration)
+  class Version < Struct.new(:tag)
 
     def get
       major, minor, patch = *previous
 
-      case configuration.version.to_sym
+      case Amanuensis.version.to_sym
       when :minor
         minor += 1
       when :major

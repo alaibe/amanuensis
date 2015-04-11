@@ -1,6 +1,8 @@
 module Amanuensis
   module Fake
-    include ActiveSupport::Configurable
+    def self.valid?
+      true
+    end
   end
 end
 
