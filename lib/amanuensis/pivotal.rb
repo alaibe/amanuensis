@@ -1,13 +1,17 @@
 require 'tracker_api'
 
+require_relative 'pivotal/tracker'
+
 module Amanuensis
   module Pivotal
     include ActiveSupport::Configurable
     config_accessor(:token)
     config_accessor(:project)
+
+    def self.valid!
+      true
+    end
   end
+
+  Tracker.register :pivotal, Trello::Tracker.new
 end
-
-require_relative 'pivotal/tracker'
-
-Tracker.register :pivotal, Trello::Tracker.new

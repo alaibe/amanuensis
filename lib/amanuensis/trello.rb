@@ -1,5 +1,7 @@
 require 'trello'
 
+require_relative 'trello/tracker'
+
 module Amanuensis
   module Trello
     include ActiveSupport::Configurable
@@ -7,9 +9,11 @@ module Amanuensis
     config_accessor(:key)
     config_accessor(:token)
     config_accessor(:board)
+
+    def self.valid!
+      true
+    end
   end
+
+  Tracker.register :trello, Trello::Tracker.new
 end
-
-require_relative 'trello/tracker'
-
-Tracker.register :trello, Trello::Tracker.new

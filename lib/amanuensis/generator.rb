@@ -1,11 +1,11 @@
 module Amanuensis
-  class Generator < Struct.new
+  class Generator
 
     def run!
       valid_configurations!
 
-      CodeManager.use code_manager.to_sym
-      Tracker.use     tracker.to_sym
+      CodeManager.use Amanuensis.code_manager.to_sym
+      Tracker.use     Amanuensis.tracker.to_sym
 
       changelog = build_changelog
       result    = push_changelog(changelog)
@@ -34,8 +34,9 @@ module Amanuensis
     end
 
     def push_changelog(changelog)
-      push.map do |type|
+      Amanuensis.push.map do |type|
         Push.use type.to_sym
+
         verbose "Push on #{type}" do
           Push.run changelog
         end
@@ -43,11 +44,11 @@ module Amanuensis
     end
 
     def latest_release
-      @latest_release ||= CodeManager.latest_release rescue nil
+      @latest_release ||= CodeManager.latest_release
     end
 
     def create_release
-      verbose 'Create release' do
+      verbose 'Createrelease' do
         CodeManager.create_release version
       end
     end
@@ -56,12 +57,9 @@ module Amanuensis
       verbose 'Valid configuration' do
         Amanuensis.valid!
 
-        push.each do |type|
-          configurations[type.to_sym].valid!
-        end
-
-        configurations[tracker.to_sym].valid!
-        configurations[code_manager.to_sym].valid!
+        push.map(&:valid!)
+        tracker.valid!
+        code_manager.valid!
       end
     end
 
@@ -70,15 +68,19 @@ module Amanuensis
     end
 
     def push
-      @push ||= Amanuensis.push
+      @push ||= Amanuensis.push.map(&method(:classify))
     end
 
     def tracker
-      @tracker ||= Amanuensis.tracker
+      @tracker ||= classify Amanuensis.tracker
     end
 
     def code_manager
-      @code_manager ||= Amanuensis.code_manager
+      @code_manager ||= classify Amanuensis.code_manager
+    end
+
+    def classify(integration)
+      "Amanuensis::#{integration.to_s.classify}".constantize
     end
 
   end

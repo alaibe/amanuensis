@@ -1,6 +1,6 @@
 module Amanuensis
-  class CodeManager
-    class Github
+  module Github
+    class CodeManager
 
       def latest_release
         hash       = client(configuration.oauth_token).latest_release(configuration.repo)

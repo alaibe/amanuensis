@@ -2,7 +2,7 @@ module Amanuensis
   module Fake
     class Push
 
-      def run(_, _)
+      def run(_)
       end
 
     end

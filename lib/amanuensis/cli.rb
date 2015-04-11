@@ -14,59 +14,17 @@ module Amanuensis
     option :mail,         type: :hash,    aliases: :m
     option :file,         type: :hash,    aliases: :f
     def generate
-      Amanuensis.configure do |config|
-        config.push         = options.push
-        config.tracker      = options.tracker
-        config.code_manager = options.code_manager
-        config.version      = options.version
-        config.verbose      = options.verbose
-      end
+      Amanuensis.push         = options.push
+      Amanuensis.tracker      = options.tracker
+      Amanuensis.code_manager = options.code_manager
+      Amanuensis.version      = options.version
+      Amanuensis.verbose      = options.verbose
 
-      Amanuensis.configure :github do |config|
-        break if options.github.blank?
-
-        options.github.each do |key, value|
-          config.send "#{key}=", value
-        end
-      end
-
-      Amanuensis.configure :file do |config|
-        break if options.file.blank?
-
-        options.file.each do |key, value|
-          config.send "#{key}=", value
-        end
-      end
-
-      Amanuensis.configure :mail do |config|
-        break if options.mail.blank?
-
-        config.pony = options.mail
-      end
-
-      Amanuensis.configure :trello do |config|
-        break if options.trello.blank?
-
-        options.trello.each do |key, value|
-          config.send "#{key}=", value
-        end
-      end
-
-      Amanuensis.configure :bitbucket do |config|
-        break if options.bitbucket.blank?
-
-        options.bitbucket.each do |key, value|
-          config.send "#{key}=", value
-        end
-      end
-
-      Amanuensis.configure :pivotal do |config|
-        break if options.pivotal.blank?
-
-        options.pivotal.each do |key, value|
-          config.send "#{key}=", value
-        end
-      end
+      Amanuensis::Github.config  = options.github
+      Amanuensis::File.config    = options.file
+      Amanuensis::Mail.config    = options.mail
+      Amanuensis::Trello.config  = options.trello
+      Amanuensis::Pivotal.config = options.pivotal
 
       Amanuensis.generate
     rescue GlobalConfigurationVersionError, GlobalConfigurationError,

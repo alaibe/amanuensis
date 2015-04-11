@@ -1,8 +1,8 @@
 module Amanuensis
-  class Push
-    class Github
+  module Github
+    class Push
 
-      def run(changelog, configuration)
+      def run(changelog)
         client = Octokit::Client.new(access_token: configuration.oauth_token, auto_paginate: true)
 
         repo_name      = configuration.repo

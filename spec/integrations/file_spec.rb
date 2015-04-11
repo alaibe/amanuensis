@@ -3,11 +3,9 @@ require 'spec_helper'
 describe 'File Amanuensis' do
 
   it 'Generates a file changelog' do
-    Amanuensis.configure do |config|
-      config.push         = [:file]
-      config.code_manager = :fake
-      config.tracker      = :fake
-    end
+    Amanuensis.push         = [:file]
+    Amanuensis.code_manager = :fake
+    Amanuensis.tracker      = :fake
 
     Amanuensis.generate
 

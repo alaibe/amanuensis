@@ -3,18 +3,14 @@ require 'spec_helper'
 describe 'Trello Amanuensis' do
 
   it 'Generates a changelog from trello tracker' do
-    Amanuensis.configure do |config|
-      config.push         = [:fake]
-      config.code_manager = :fake
-      config.tracker      = :trello
-    end
+    Amanuensis.push         = [:fake]
+    Amanuensis.code_manager = :fake
+    Amanuensis.tracker      = :trello
 
-    Amanuensis.configure :trello do |config|
-      config.key   = ENV.fetch('TRELLO_KEY')
-      config.token = ENV.fetch('TRELLO_TOKEN')
-      config.board = ENV.fetch('TRELLO_BOARD')
-      config.list  = ENV.fetch('TRELLO_LIST')
-    end
+    Amanuensis::Trello.key   = ENV.fetch('TRELLO_KEY')
+    Amanuensis::Trello.token = ENV.fetch('TRELLO_TOKEN')
+    Amanuensis::Trello.board = ENV.fetch('TRELLO_BOARD')
+    Amanuensis::Trello.list  = ENV.fetch('TRELLO_LIST')
 
     Amanuensis.generate
   end

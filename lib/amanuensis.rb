@@ -9,13 +9,19 @@ require_relative 'amanuensis/generator'
 require_relative 'amanuensis/builder'
 require_relative 'amanuensis/errors'
 require_relative 'amanuensis/logger'
+require_relative 'amanuensis/push'
+require_relative 'amanuensis/code_manager'
+require_relative 'amanuensis/tracker'
+require_relative 'amanuensis/issue'
+require_relative 'amanuensis/pull'
+require_relative 'amanuensis/release'
 
-require_relative 'fake'
-require_relative 'github'
-require_relative 'trello'
-require_relative 'pivotal'
-require_relative 'mail'
-require_relative 'file'
+require_relative 'amanuensis/fake'
+require_relative 'amanuensis/github'
+require_relative 'amanuensis/trello'
+require_relative 'amanuensis/pivotal'
+require_relative 'amanuensis/mail'
+require_relative 'amanuensis/file'
 
 module Amanuensis
   include ActiveSupport::Configurable
@@ -26,6 +32,10 @@ module Amanuensis
   config_accessor(:version)      { :patch }
 
   def self.generate
-    Generator.new(configurations).run!
+    Generator.new.run!
+  end
+
+  def self.valid!
+    true
   end
 end

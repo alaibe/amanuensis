@@ -3,7 +3,7 @@ module Amanuensis
     class Push
 
       def run(changelog)
-        Pony.mail(configuration.pony.merge({ body: changelog }))
+        Pony.mail Mail.pony.merge(body: changelog)
       end
 
     end
