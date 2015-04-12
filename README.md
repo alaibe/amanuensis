@@ -71,11 +71,15 @@ For ```Amanuensis```, it is possible to set:
 * push
 * code_manager
 * tracker
+* version
+* verbose
 
 ```ruby
 Amanuensis.push = [:github, :file, :mail]
 Amanuensis.tracker = :github
 Amanuensis.code_manager = :github
+Amanuensis.version = :major
+Amanuensis.verbose = true
 ```
 
 See below for all integrations available and their respective configuration
