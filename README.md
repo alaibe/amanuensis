@@ -176,7 +176,7 @@ Amanuensis::Pivotal.project = ENV.fetch('PIVOTAL_PROJECT')
 
 ### Push
 
-If you don't specify any traker, ```file``` will be used by default
+If you don't specify any push, ```file``` will be used by default
 
 Push is different from others integrations as you can chain them:
 ```ruby
