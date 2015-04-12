@@ -18,20 +18,19 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "octokit"
-  spec.add_dependency "pony"
-  spec.add_dependency "activesupport"
-  spec.add_dependency "interchange"
-  spec.add_dependency "thor"
+  spec.add_dependency "octokit", '~>3.8'
+  spec.add_dependency "pony", '~>1.11'
+  spec.add_dependency "activesupport", '~>4.2'
+  spec.add_dependency "interchange", '~>0.1'
+  spec.add_dependency "thor", '~>0.19'
   spec.add_dependency "ruby-trello", '~>1.2'
-  spec.add_dependency "tracker_api"
+  spec.add_dependency "tracker_api", '~>0.2'
 
-  spec.add_development_dependency "bundler"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "vcr"
-  spec.add_development_dependency "webmock"
-  spec.add_development_dependency "dotenv"
-  spec.add_development_dependency "activesupport"
-  spec.add_development_dependency "pry-byebug"
+  spec.add_development_dependency "bundler", '~>1.9'
+  spec.add_development_dependency "rake", '~>10.4'
+  spec.add_development_dependency "rspec", '~>3.2'
+  spec.add_development_dependency "vcr", '~>2.9'
+  spec.add_development_dependency "webmock", '~>1.21'
+  spec.add_development_dependency "dotenv", '~>2.0'
+  spec.add_development_dependency "pry-byebug", '~>3.1'
 end
