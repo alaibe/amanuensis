@@ -3,11 +3,9 @@ require_relative 'file/push'
 module Amanuensis
   module File
     include ActiveSupport::Configurable
-    config_accessor(:file_name) { 'Changelog.md' }
+    include Validatable
 
-    def self.valid!
-      true
-    end
+    config_accessor(:file_name) { 'Changelog.md' }
   end
 
   Push.register :file, File::Push.new

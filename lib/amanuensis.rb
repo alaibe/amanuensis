@@ -4,6 +4,7 @@ require 'active_support/core_ext/object/blank'
 require 'active_support/configurable'
 
 require_relative 'amanuensis/version'
+require_relative 'amanuensis/validatable'
 require_relative 'amanuensis/cli'
 require_relative 'amanuensis/generator'
 require_relative 'amanuensis/builder'
@@ -24,17 +25,17 @@ require_relative 'amanuensis/file'
 
 module Amanuensis
   include ActiveSupport::Configurable
+  include Validatable
+
   config_accessor(:push)         { [:file] }
   config_accessor(:tracker)      { :github }
   config_accessor(:code_manager) { :github }
   config_accessor(:verbose)      { false }
   config_accessor(:version)      { :patch }
 
+  validate_presence_of :push, :tracker, :code_manager, :version
+
   def self.generate
     Generator.new.run!
-  end
-
-  def self.valid!
-    true
   end
 end

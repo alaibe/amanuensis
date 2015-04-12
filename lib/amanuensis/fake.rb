@@ -4,9 +4,7 @@ require_relative 'fake/push'
 
 module Amanuensis
   module Fake
-    def self.valid!
-      true
-    end
+    include Validatable
   end
 
   Push.register        :fake, Fake::Push.new

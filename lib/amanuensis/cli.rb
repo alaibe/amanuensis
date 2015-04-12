@@ -27,10 +27,7 @@ module Amanuensis
       Amanuensis::Pivotal.config = options.pivotal
 
       Amanuensis.generate
-    rescue GlobalConfigurationVersionError, GlobalConfigurationError,
-      GithubConfigurationError,
-      TrelloConfigurationError, PivotalConfigurationError,
-      FileConfigurationError, MailConfigurationError => e
+    rescue ValidationError => e
       puts e.message
     end
 
