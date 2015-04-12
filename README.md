@@ -39,7 +39,6 @@ Options:
                                     # Default: patch
   v, [--verbose], [--no-verbose]
   g, [--github=key:value]
-  b, [--bitbucket=key:value]
   c, [--trello=key:value]
   i, [--pivotal=key:value]
   m, [--mail=key:value]
@@ -51,7 +50,7 @@ Generate a changelog
 Type ``` amanuensis generate [options]``` to generate the changelog
 
 
-## Usage via ruby program
+## Usage via ruby
 
 Just call the method ```#generate```
 ```ruby
@@ -60,16 +59,43 @@ Amanuensis.generate
 
 Before calling the generator you need to configure it:
 ```ruby
-Amanuensis.configure do |config|
-  config.push = [:github]
-end
-
-Amanuens.configure :github |config|
-  config.oauth_token = 'token'
-end
+Amanuensis.push = [:github]
+  
+Amanuensis::Github.oauth_token = ENV.fetch('GITHUB_OAUTH_TOKEN')
+Amanuensis::Github.repo        = ENV.fetch('GITHUB_REPO')
 ```
 
-For each integrations system available, a configuration is also available
+Each integrations are configurable, just like ```Amanuensis```
+
+For ```Amanuensis```, it is possible to set:
+* push
+* code_manager
+* tracker
+
+```ruby
+Amanuensis.push = [:github, :file, :mail]
+Amanuensis.tracker = :github
+Amanuensis.code_manager = :github
+```
+
+See below for all integrations available and their respective configuration
+
+## Version
+
+The allowed values for version are:
+* major
+* minor
+* patch
+
+And it works like that:
+```
+major.minor.patch
+```
+
+If there is not release the first version will be:
+```
+0.0.1
+```
 
 ## Integrations
 
@@ -80,6 +106,7 @@ If you don't specify any code managers, ```github``` will be used by default
 #### Github
 
 If you use github as a code manager, a github release will be created at the end of the process
+The changelog will also contains all pull requests closed since the latest release
 
 Via command line:
 ```
@@ -88,15 +115,9 @@ amanuensis generator --github=oauth_token:my_token repo:alaibe/amanuensis
 
 Via Ruby:
 ```ruby
-Amanuensis.configure :github do |config|
-  config.oauth_token = 'my_token'
-  config.repo        = 'my_token'
-end
+Amanuensis::Github.oauth_token = ENV.fetch('GITHUB_OAUTH_TOKEN')
+Amanuensis::Github.repo        = ENV.fetch('GITHUB_REPO')
 ```
-
-#### Bitbucket
-
-Coming soon
 
 ### Trackers
 
@@ -104,7 +125,7 @@ If you don't specify any traker, ```github``` will be used by default
 
 #### Github
 
-If github is used, the changelog will contains the closed issues since the last release and the pull request since the last release
+If github is used, the changelog will contains the closed issues since the last release
 
 Via command line:
 ```
@@ -113,19 +134,41 @@ amanuensis generator --github=oauth_token:my_token repo:alaibe/amanuensis
 
 Via Ruby:
 ```ruby
-Amanuensis.configure :github do |config|
-  config.oauth_token = 'my_token'
-  config.repo        = 'my_token'
-end
+Amanuensis::Github.oauth_token = ENV.fetch('GITHUB_OAUTH_TOKEN')
+Amanuensis::Github.repo        = ENV.fetch('GITHUB_REPO')
 ```
 
 #### Trello
 
-Coming soon
+If trello is used, the changelog will contains the closed cards since the last release
+
+Via command line:
+```
+amanuensis generator --trello=key:my_key token:my_token board:amanuensis list:done
+```
+
+Via Ruby:
+```ruby
+Amanuensis::Trello.key   = ENV.fetch('TRELLO_KEY')
+Amanuensis::Trello.token = ENV.fetch('TRELLO_TOKEN')
+Amanuensis::Trello.board = ENV.fetch('TRELLO_BOARD')
+Amanuensis::Trello.list  = ENV.fetch('TRELLO_LIST')
+```
 
 #### Pivotal tracker
 
-Coming soon
+If pivotal is used, the changelog will contains the accepted cards since the last release
+
+Via command line:
+```
+amanuensis generator --pivotal=token:my_token project:amanuensis
+```
+
+Via Ruby:
+```ruby
+Amanuensis::Pivotal.token   = ENV.fetch('PIVOTAL_TOKEN')
+Amanuensis::Pivotal.project = ENV.fetch('PIVOTAL_PROJECT')
+```
 
 ### Push
 
@@ -133,9 +176,7 @@ If you don't specify any traker, ```file``` will be used by default
 
 Push is different from others integrations as you can chain them:
 ```ruby
-Amanuensis.configure do |config|
-  config.push = [:github, :mail, :file]
-end
+Amanuensis.push = [:github, :mail, :file]
 ```
 
 This configuration will publish the changelog to your github repository, send an
@@ -153,16 +194,28 @@ file_name:new_changelog.md
 
 Via Ruby:
 ```ruby
-Amanuensis.configure :github do |config|
-  config.oauth_token = 'my_token'
-  config.repo        = 'my_token'
-  config.file_name   = 'new_changelog.md'
-end
+Amanuensis::Github.oauth_token = ENV.fetch('GITHUB_OAUTH_TOKEN')
+Amanuensis::Github.repo        = ENV.fetch('GITHUB_REPO')
+Amanuensis::Github.file_name   = ENV.fetch('GITHUB_FILE_NAME')
 ```
 
-The option ```file_name``` is not required
+The option ```file_name``` is not required and is set to ```Changelog.md``` by default
 
 ##### Mail
+
+We use the gem pony in order to send mail
+See the gem readme for all the options available: https://github.com/benprew/pony
+
+Via command line:
+```
+amanuensis generator --mail=to:anthony@amanuensis.com
+```
+
+Via Ruby:
+```ruby
+Amanuensis::Mail.pony = { to: 'anthony@amanuensis.com' }
+```
+
 ##### File
 
 If you export push your changelog with the file option, it will create a file named ```Changelog.md``` by default
@@ -173,16 +226,14 @@ amanuensis generator --file=file_name:new_changelog.md
 
 Via Ruby:
 ```ruby
-Amanuensis.configure :file do |config|
-  config.file_name   = 'new_changelog.md'
-end
+Amanuensis::File.file_name   = 'new_changelog.md'
 ```
 
-The option ```file_name``` is not required
+The option ```file_name``` is not required and is set to ```Changelog.md``` by default
 
 ## Ask for new integration
 
-If you want new integration you can create an issue via the github and issues and add the label integration on it
+If you want new integration you can create an issue via github and add the label integration on it.
 
 ## Contributing
 
