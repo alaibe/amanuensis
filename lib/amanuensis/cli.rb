@@ -19,11 +19,31 @@ module Amanuensis
       Amanuensis.version      = options.version
       Amanuensis.verbose      = options.verbose
 
-      Amanuensis::Github.config  = options.github
-      Amanuensis::File.config    = options.file
-      Amanuensis::Mail.config    = options.mail
-      Amanuensis::Trello.config  = options.trello
-      Amanuensis::Pivotal.config = options.pivotal
+      if options.github.present?
+        options.github.each do |key, value|
+          Amanuensis::Github.send "#{key}=", value
+        end
+      end
+
+      if options.file.present?
+        options.file.each do |key, value|
+          Amanuensis::File.send "#{key}=", value
+        end
+      end
+
+      if options.trello.present?
+        options.trello.each do |key, value|
+          Amanuensis::Trello.send "#{key}=", value
+        end
+      end
+
+      if options.pivotal.present?
+        options.pivotal.each do |key, value|
+          Amanuensis::Pivotal.send "#{key}=", value
+        end
+      end
+
+      Amanuensis::Mail.pony  = options.mail
 
       Amanuensis.generate
     rescue ValidationError => e
