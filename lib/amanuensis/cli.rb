@@ -8,7 +8,6 @@ module Amanuensis
     option :version,      type: :string,  aliases: :u, default: :patch
     option :verbose,      type: :boolean, aliases: :v, default: false
     option :github,       type: :hash,    aliases: :g
-    option :bitbucket,    type: :hash,    aliases: :b
     option :trello,       type: :hash,    aliases: :c
     option :pivotal,      type: :hash,    aliases: :i
     option :mail,         type: :hash,    aliases: :m
