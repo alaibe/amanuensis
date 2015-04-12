@@ -3,10 +3,10 @@ module Amanuensis
     class CodeManager
 
       def latest_release
-        hash       = client.latest_release(Github.repo)
-        created_at = hash.created_at rescue Date.new(1900)
-
+        hash = client.latest_release(Github.repo)
         Release.new hash.created_at, hash.tag_name
+      rescue
+        Release.new Date.new(1900), '0.0.0'
       end
 
       def create_release(version)

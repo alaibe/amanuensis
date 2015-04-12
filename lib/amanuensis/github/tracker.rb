@@ -8,7 +8,6 @@ module Amanuensis
         end
       end
 
-
       private
 
       def filter(list, from)

@@ -48,7 +48,7 @@ module Amanuensis
     end
 
     def create_release
-      verbose 'Createrelease' do
+      verbose 'Create release' do
         CodeManager.create_release version
       end
     end
