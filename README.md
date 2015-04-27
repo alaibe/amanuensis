@@ -114,7 +114,7 @@ The changelog will also contains all pull requests closed since the latest relea
 
 Via command line:
 ```
-amanuensis generator --github=oauth_token:my_token repo:alaibe/amanuensis
+amanuensis generate --github=oauth_token:my_token repo:alaibe/amanuensis
 ```
 
 Via Ruby:
@@ -133,7 +133,7 @@ If github is used, the changelog will contains the closed issues since the last 
 
 Via command line:
 ```
-amanuensis generator --github=oauth_token:my_token repo:alaibe/amanuensis
+amanuensis generate --github=oauth_token:my_token repo:alaibe/amanuensis
 ```
 
 Via Ruby:
@@ -148,7 +148,7 @@ If trello is used, the changelog will contains the closed cards since the last r
 
 Via command line:
 ```
-amanuensis generator --trello=key:my_key token:my_token board:amanuensis list:done
+amanuensis generate --trello=key:my_key token:my_token board:amanuensis list:done
 ```
 
 Via Ruby:
@@ -165,7 +165,7 @@ If pivotal is used, the changelog will contains the accepted cards since the las
 
 Via command line:
 ```
-amanuensis generator --pivotal=token:my_token project:amanuensis
+amanuensis generate --pivotal=token:my_token project:amanuensis
 ```
 
 Via Ruby:
@@ -192,7 +192,7 @@ If you use github to push your changelog, it will be append to the file named Ch
 
 Via command line:
 ```
-amanuensis generator --github=oauth_token:my_token repo:alaibe/amanuensis
+amanuensis generate --github=oauth_token:my_token repo:alaibe/amanuensis
 file_name:new_changelog.md
 ```
 
@@ -212,7 +212,7 @@ See the gem readme for all the options available: https://github.com/benprew/pon
 
 Via command line:
 ```
-amanuensis generator --mail=to:anthony@amanuensis.com
+amanuensis generate --mail=to:anthony@amanuensis.com
 ```
 
 Via Ruby:
@@ -225,7 +225,7 @@ Amanuensis::Mail.pony = { to: 'anthony@amanuensis.com' }
 If you export push your changelog with the file option, it will create a file named ```Changelog.md``` by default
 
 ```
-amanuensis generator --file=file_name:new_changelog.md
+amanuensis generate --file=file_name:new_changelog.md
 ```
 
 Via Ruby:
