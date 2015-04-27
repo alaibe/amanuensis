@@ -43,11 +43,32 @@ module Amanuensis
         end
       end
 
-      Amanuensis::Mail.pony  = options.mail
+      if options.mail.present?
+        pony = extract_pony_options!(options.mail)
+        Amanuensis::Mail.pony = pony
+      end
 
       Amanuensis.generate
     rescue ValidationError => e
       puts e.message
+    end
+
+    private
+
+    VIA_OPTIONS = 'via_options'
+
+    def extract_pony_options!(options = {})
+      via_options = options[VIA_OPTIONS] ||= {}
+
+      options.each do |key, value|
+        if key != VIA_OPTIONS && key.start_with?(VIA_OPTIONS)
+          sub_key = key.gsub("#{VIA_OPTIONS}_", '')
+          via_options[sub_key] = value
+          options.delete(key)
+        end
+      end
+
+      options
     end
 
   end
