@@ -63,12 +63,19 @@ module Amanuensis
       options.each do |key, value|
         if key != VIA_OPTIONS && key.start_with?(VIA_OPTIONS)
           sub_key = key.gsub("#{VIA_OPTIONS}_", '')
-          via_options[sub_key] = value
+          via_options[sub_key.to_sym] = value
           options.delete(key)
         end
       end
 
-      options
+      string_keys_to_symbols(options)
+    end
+
+    def string_keys_to_symbols(hash)
+      hash.inject({}){ |memo,(key, value)|
+        memo[key.to_sym] = value
+        memo
+      }
     end
 
   end
