@@ -70,14 +70,7 @@ module Amanuensis
         end
       end
 
-      string_keys_to_symbols(options)
-    end
-
-    def string_keys_to_symbols(hash)
-      hash.inject({}){ |memo,(key, value)|
-        memo[key.to_sym] = value
-        memo
-      }
+      options
     end
 
   end

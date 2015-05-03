@@ -3,7 +3,13 @@ module Amanuensis
     class Push
 
       def run(changelog)
-        Pony.mail Mail.pony.merge(body: changelog)
+        Pony.mail options.merge(body: changelog)
+      end
+
+      private
+
+      def options
+        HashWithIndifferentAccess.new Mail.pony
       end
 
     end

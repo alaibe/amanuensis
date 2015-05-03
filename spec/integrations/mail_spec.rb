@@ -7,9 +7,9 @@ describe 'Mail Amanuensis' do
     Amanuensis.code_manager = :fake
     Amanuensis.tracker      = :fake
 
-    Amanuensis::Mail.pony = { to: 'foo@bar.com' }
+    Amanuensis::Mail.pony = { 'to' => 'foo@bar.com' }
 
-    expect(Pony).to receive(:mail)
+    expect(Pony).to receive(:mail).with(to: 'foo@bar.com', body: /.*/)
     Amanuensis.generate
   end
 
