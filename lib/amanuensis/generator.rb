@@ -48,6 +48,8 @@ module Amanuensis
     end
 
     def create_release
+      return unless Amanuensis.release
+
       verbose 'Create release' do
         CodeManager.create_release version
       end

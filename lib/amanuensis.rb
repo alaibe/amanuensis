@@ -31,6 +31,7 @@ module Amanuensis
   config_accessor(:tracker)      { :github }
   config_accessor(:code_manager) { :github }
   config_accessor(:verbose)      { false }
+  config_accessor(:release)      { true }
   config_accessor(:version)      { :patch }
 
   validate_presence_of :push, :tracker, :code_manager, :version

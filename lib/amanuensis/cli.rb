@@ -6,6 +6,7 @@ module Amanuensis
     option :tracker,      type: :string,  aliases: :t, default: :github
     option :code_manager, type: :string,  aliases: :c, default: :github
     option :version,      type: :string,  aliases: :u, default: :patch
+    option :release,      type: :boolean, aliases: :r, default: true
     option :verbose,      type: :boolean, aliases: :v, default: false
     option :github,       type: :hash,    aliases: :g
     option :trello,       type: :hash,    aliases: :c
@@ -18,6 +19,7 @@ module Amanuensis
       Amanuensis.code_manager = options.code_manager
       Amanuensis.version      = options.version
       Amanuensis.verbose      = options.verbose
+      Amanuensis.release      = options.release
 
       if options.github.present?
         options.github.each do |key, value|
