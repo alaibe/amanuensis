@@ -75,6 +75,7 @@ For ```Amanuensis```, it is possible to set:
 * tracker
 * version
 * verbose
+* relase
 
 ```ruby
 Amanuensis.push = [:github, :file, :mail]
