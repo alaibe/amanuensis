@@ -37,6 +37,8 @@ Options:
                                     # Default: github
   u, [--version=VERSION]
                                     # Default: patch
+  r, [--release], [--no-release]
+                                    # Default: true
   v, [--verbose], [--no-verbose]
   g, [--github=key:value]
   c, [--trello=key:value]
@@ -80,6 +82,7 @@ Amanuensis.tracker = :github
 Amanuensis.code_manager = :github
 Amanuensis.version = :major
 Amanuensis.verbose = true
+Amanuensis.release = false
 ```
 
 See below for all integrations available and their respective configuration
