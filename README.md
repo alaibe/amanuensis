@@ -210,14 +210,16 @@ The option ```file_name``` is not required and is set to ```Changelog.md``` by d
 We use the gem pony in order to send mail
 See the gem readme for all the options available: https://github.com/benprew/pony
 
+All nested hash params are flatten for the command line
+
 Via command line:
 ```
-amanuensis generate --mail=to:anthony@amanuensis.com
+amanuensis generate --mail=to:anthony@amanuensis.com via_options_port:25
 ```
 
 Via Ruby:
 ```ruby
-Amanuensis::Mail.pony = { to: 'anthony@amanuensis.com' }
+Amanuensis::Mail.pony = { to: 'anthony@amanuensis.com', via_options: { port: 25 }}
 ```
 
 ##### File

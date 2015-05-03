@@ -1,5 +1,5 @@
 module Amanuensis
-  VERSION = "1.0.0"
+  VERSION = "1.0.1"
 
   class Version < Struct.new(:tag)
 
